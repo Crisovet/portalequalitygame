@@ -192,6 +192,8 @@ html.mob .pill{white-space:nowrap;overflow:hidden}
 .tl,html.mob .tl{width:max-content!important;max-width:60%}
 .tl,#bombs{align-items:stretch}
 .pill,html.mob .pill{width:100%;box-sizing:border-box}
+html.mob .pill{overflow:visible;padding:0 10px 0 7px;text-overflow:clip}
+html.mob .tl{max-width:none}
 </style>
 </head>
 <body>
@@ -245,7 +247,7 @@ function zoneOf(x,y){
   const a=(Math.atan2(dy,dx)/D+360)%360;return{c,q:QR.findIndex(r=>a>=r[0]&&a<r[1])}}}
  return null}
 let w,h,dpr,S,OX,OY;
-function resize(){w=cv.clientWidth;h=cv.clientHeight;dpr=window.devicePixelRatio||1;cv.width=w*dpr;cv.height=h*dpr;ctx.setTransform(dpr,0,0,dpr,0,0);S=Math.min(w/1100,h/790);OX=w/2;OY=h/2+50*S;buildFloor()}
+function resize(){w=cv.clientWidth;h=cv.clientHeight;dpr=window.devicePixelRatio||1;cv.width=w*dpr;cv.height=h*dpr;ctx.setTransform(dpr,0,0,dpr,0,0);S=Math.min(w/1100,h/790);OX=w/2+(document.documentElement.classList.contains("mob")?Math.min(w*.11,110):0);OY=h/2+50*S;buildFloor()}
 const ln=(a,b,c)=>{ctx.strokeStyle=c;ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(a[0],a[1]);ctx.lineTo(b[0],b[1]);ctx.stroke()};
 const P=(x,y,z=0)=>[OX+S*(x-y)*.866,OY+S*((x+y)*.5-z)];
 const rgba=(hx,a)=>{const n=parseInt(hx.slice(1),16);return`rgba(${n>>16},${(n>>8)&255},${n&255},${a})`};
