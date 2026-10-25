@@ -645,7 +645,8 @@ function start(kind,id,col){
 }
 dropB.onclick=()=>start("bomb",BOMBS[tool].id,BOMBS[tool].col);
 gunB.onclick=()=>start("gun","co",GUN.col);
-function setTarget(e){const r=cv.getBoundingClientRect(),rot=document.documentElement.classList.contains("rot"),lx=rot?e.clientY-r.top:e.clientX-r.left,ly=rot?r.right-e.clientX:e.clientY-r.top,u=(lx-OX)/(S*.866),v=(ly-OY)/(S*.5);tx=(u+v)/2;ty=(v-u)/2}
+let touchDrag=false;
+function setTarget(e){touchDrag=e.pointerType==="touch"||e.pointerType==="pen";const r=cv.getBoundingClientRect(),rot=document.documentElement.classList.contains("rot"),lx=rot?e.clientY-r.top:e.clientX-r.left,ly=rot?r.right-e.clientX:e.clientY-r.top,u=(lx-OX)/(S*.866),v=(ly-OY)/(S*.5);tx=(u+v)/2;ty=(v-u)/2}
 cv.addEventListener("pointerdown",e=>{drag=true;cv.setPointerCapture(e.pointerId);setTarget(e);e.preventDefault()});
 cv.addEventListener("pointermove",e=>{if(drag)setTarget(e)});
 ["pointerup","pointercancel"].forEach(t=>cv.addEventListener(t,()=>{drag=false}));
@@ -740,7 +741,7 @@ function frame(now){
  }else if(leaving){leaveStep(dt)
  }else if(drag&&!escaped){
   const vx=tx-px,vy=ty-py,d=Math.hypot(vx,vy);
-  if(d>4){const s=Math.min(SPEED*dt,d);px+=vx/d*s;py+=vy/d*s;walking=true;const sx=vx-vy;if(Math.abs(sx)>.5*d*.3)face=sx>0?1:-1;collide()}
+  if(d>2){const s=Math.min((touchDrag?Math.min(Math.max(SPEED,d*9),560):SPEED)*dt,d);px+=vx/d*s;py+=vy/d*s;walking=true;const sx=vx-vy;if(Math.abs(sx)>.5*d*.3)face=sx>0?1:-1;collide()}
  }
  zone=tele?null:zoneOf(px,py);
  if(!tele&&!intro&&!trans&&!dying)PARTS.forEach(p=>{if(!p.got&&Math.hypot(px-p.x,py-p.y)<32)collect(p)});
