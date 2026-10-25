@@ -737,7 +737,7 @@ function frame(now){
  }else if(leaving){leaveStep(dt)
  }else if(drag&&!escaped){
   const vx=tx-px,vy=ty-py,d=Math.hypot(vx,vy);
-  if(d>2){const s=Math.min((touchDrag?Math.min(Math.max(SPEED,d*9),560):SPEED)*dt,d);px+=vx/d*s;py+=vy/d*s;walking=true;const sx=vx-vy;if(Math.abs(sx)>.5*d*.3)face=sx>0?1:-1;collide()}
+  if(d>2){let rem=Math.min((touchDrag?Math.min(Math.max(SPEED,d*9),560):SPEED)*dt,d);const ux=vx/d,uy=vy/d;while(rem>.001){const st=Math.min(rem,5);px+=ux*st;py+=uy*st;rem-=st;collide()}walking=true;const sx=vx-vy;if(Math.abs(sx)>.5*d*.3)face=sx>0?1:-1}
  }
  zone=tele?null:zoneOf(px,py);
  if(!tele&&!intro&&!trans&&!dying)PARTS.forEach(p=>{if(!p.got&&Math.hypot(px-p.x,py-p.y)<32)collect(p)});
