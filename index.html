@@ -142,6 +142,33 @@ html.rot body{position:fixed;top:0;left:100%;width:100vh;height:100vw;width:100d
 #done .btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
 #done .act{--c:#5dffa0}
 html.mob #done .dc{padding:14px 20px}html.mob #done .sc{margin:6px 0 10px}html.mob #done .dn{margin-top:6px}
+
+/* compact mobile controls */
+html.mob .lab,html.mob .tl .lab{font-size:.55rem;letter-spacing:.12em}
+html.mob .tl{width:30%;top:6px;left:6px;gap:3px}
+html.mob .pill{font-size:.62rem;padding:5px 7px;gap:5px}
+html.mob .pill i{width:8px;height:8px}
+html.mob .pill.sel{transform:translateX(6px) scale(1.04)}
+html.mob .pill.sel::after{font-size:.42rem;padding:2px 4px}
+html.mob .tm{top:6px;left:50%;right:auto;transform:translateX(-50%);width:24%;gap:4px}
+html.mob .act{font-size:.68rem;min-height:30px;padding:5px 8px;letter-spacing:.04em}
+html.mob .obj{top:6px;right:6px;width:28%;padding:5px 8px 6px}
+html.mob .otxt{font-size:.52rem;margin:3px 0 5px}
+html.mob .hp{bottom:6px;gap:3px}
+html.mob .hp .row{gap:8px}
+html.mob .hp .lab{font-size:.6rem}
+html.mob .hpv{font-size:.85rem}
+html.mob .hpbar{gap:3px;padding:4px 7px}
+html.mob .hpbar i{width:clamp(10px,2.4vw,18px);height:14px}
+html.mob .pick{bottom:46px;font-size:.58rem;padding:5px 12px}
+html.mob #toast{width:min(70%,420px);padding:8px 14px 10px}
+html.mob #tt{font-size:.78rem}
+html.mob #dead .dc{padding:14px 22px}
+html.mob .dl{font-size:1.2rem}
+html.mob .ds{font-size:.85rem;margin:6px 0 12px}
+html.mob .act.redo{width:min(100%,200px)}
+html.mob #done .act{min-width:90px}
+html.mob #gate button{padding:9px;font-size:.85rem}
 </style>
 </head>
 <body>
